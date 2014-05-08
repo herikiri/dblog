@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	before_create :build_default_blog
+
 	TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
 
@@ -13,6 +15,7 @@ class User < ActiveRecord::Base
 	validates_exclusion_of :name, in: ['www', 'mail', 'ftp'], message: "is not available"
 
 	has_one :blog, dependent: :destroy
+	has_one :picture, as: :imageable
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -44,4 +47,12 @@ class User < ActiveRecord::Base
     end
     user
   end
+
+  private
+  	def build_default_blog
+  		build_blog(attributes = {
+  			name: self.name.capitalize + "'s Blog"
+  			} )
+  		true
+  	end
 end
