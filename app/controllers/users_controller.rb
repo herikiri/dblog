@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :set_user, :add_email
-	
+	#before_action :set_user, :add_email
+
   def add_email
     if params[:user] && params[:user][:email]
       current_user.email = params[:user][:email]
@@ -16,9 +16,14 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def show
+    @user = User.find(params[:id])
+  end
   
   private
     def set_user
-      @user = User.find(params[:id])
+      #@user = User.find(params[:id])
+      @user = User.name request.subdomain
     end
 end

@@ -1,4 +1,4 @@
-class OmniauthCallbacksController < ApplicationController
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def twitter
     @user = User.find_for_oauth(env["omniauth.auth"], current_user)
     if @user.persisted?

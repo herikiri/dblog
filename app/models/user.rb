@@ -8,6 +8,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  #validates_format_of :name, with: /^[a-z0-9_]+$/, multiline: true, message: "must be lowercase alphanumerics only"
+	validates_length_of :name, maximum: 32, message: "exceeds maximum of 32 characters"
+	validates_exclusion_of :name, in: ['www', 'mail', 'ftp'], message: "is not available"
+
+	has_one :blog, dependent: :destroy
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -27,7 +32,7 @@ class User < ActiveRecord::Base
           email: auth.info.email.blank? ? TEMP_EMAIL : auth.info.email,
           password: Devise.friendly_token[0,20]
         )
-        user.skip_confirmation!
+        #user.skip_confirmation!
         user.save!
       end
 

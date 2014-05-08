@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
+  #get 'profiles/show'
+
+  get 'landing/index'
+
   get 'users/add_email'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' } 
   
-  get 'omniauth_callbacks/twitter'
-  get 'omniauth_callbacks/facebook'
+  #get 'omniauth_callbacks/twitter'
+  #get 'omniauth_callbacks/facebook'
+  resources :users, :only => :show
+  constraints(Subdomain) do
+    match '/' => 'profiles#show', via: [:get, :patch, :post]
+  end
+
 
   
   get '/users/:id/add_email' => 'users#add_email', via: [:get, :patch, :post], :as => :add_user_email
@@ -13,6 +22,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  root 'landing#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
