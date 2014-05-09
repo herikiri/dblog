@@ -1,41 +1,33 @@
-<%= form_for(@article) do |f| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
-
-      <ul>
-      <% @article.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for @article, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
   </div>
-
-  <div class="field">
-    <%= f.file_field "uploaded_picture" %>
+  <div class="control-group">
+    <%= f.label :content, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :content, :class => 'text_area' %>
+    </div>
   </div>
   
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :status, options_for_select([
+          ['Make Draft', 'draft'], 
+          ['Publish', 'published']
+        ], 
+        selected: 'draft'), :class => 'select_field' %>
+      
+    </div>
   </div>
-
-
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.select(:status, 
-      options_for_select([['Make Draft', 'draft'], ['Publish', 'published']], selected: 'draft')) %>
-    
-  </div>
-
   
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                articles_path, :class => 'btn' %>
   </div>
 <% end %>

@@ -1,3 +1,4 @@
+<h1>Welcome to DBlog</h1>
 <%  @global_published_articles.each do |article| %>
 	<h3><%= link_to article.title, article %></h3>
 	<span class='publihed_date'><%= article.updated_at %></span><br />

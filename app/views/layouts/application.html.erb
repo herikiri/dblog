@@ -7,26 +7,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
-<% unless user_signed_in? %>  
-  <%= link_to "Home", root_path %> |
-  <%= link_to "Login", new_user_session_path %> |
-  <%= link_to "Register", new_user_registration_path %>
-<% else %>  
-  <%= link_to "Home", root_path %> |
-  <%= link_to "Signed in as #{current_user.email}",  profiles_index_path %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% end %>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar_inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">DBlog</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li><%= link_to "Home", root_path %></li>
+          <% unless user_signed_in? %>
+          <li><%= link_to "Login", new_user_session_path %></li>
+          <li><%= link_to "Register", new_user_registration_path %></li>
+          <% else %>
+          <li><%= link_to "Blog",  blog_index_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
-<hr>
 
-<% if notice %>  
-  <div class="notice"><%= notice %></div>
-<% elsif alert %>  
-  <div class="alert"><%= alert %></div>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="span9"><%= yield %></div>
+    <div class="span3">
+      <h2>Sidebar</h2>
+    </div>
+  </div>
+</div>
 
-<%= yield %>
 
 </div>
 

@@ -1,0 +1,12 @@
+<h1><%= @user.blog.name %></h1>
+<span><%= @user.blog.description %></span>
+
+<%= link_to 'Article List', articles_path %> | 
+<%= link_to 'New Article', new_article_path %>
+
+<%  @published_articles.each do |article| %>
+	<h3><%= article.title %></h3>
+	<article>
+		<%= article.content %>
+	<article>
+<% end %>

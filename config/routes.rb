@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'landing/index'
   
   get 'users/add_email'
-  get 'profiles/index'
+  get 'blog/index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' } 
   
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   
 
   constraints(Subdomain) do
-    match '/' => 'profiles#show', via: [:get, :patch, :post]
+    match '/' => 'blog#show', via: [:get, :patch, :post]
   end
 
 

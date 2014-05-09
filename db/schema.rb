@@ -11,16 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508150735) do
+ActiveRecord::Schema.define(version: 20140508140912) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.string   "status"
     t.integer  "blog_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
-    t.datetime "published_at"
   end
 
   add_index "articles", ["blog_id"], name: "index_articles_on_blog_id"
@@ -50,14 +49,6 @@ ActiveRecord::Schema.define(version: 20140508150735) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "categories_articles", force: true do |t|
-    t.integer "category_id"
-    t.integer "article_id"
-  end
-
-  add_index "categories_articles", ["article_id"], name: "index_categories_articles_on_article_id"
-  add_index "categories_articles", ["category_id"], name: "index_categories_articles_on_category_id"
 
   create_table "comments", force: true do |t|
     t.string   "content"
