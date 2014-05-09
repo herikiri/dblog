@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	before_create :build_default_blog
+	#before_create :build_default_blog
 
 	TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
 	has_one :blog, dependent: :destroy
 	has_one :picture, as: :imageable
+  has_many :comments
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
