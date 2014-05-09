@@ -1,0 +1,8 @@
+<h3><%= @article.title %></h3>
+
+<article>
+	<%= @article.content %>
+</article>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

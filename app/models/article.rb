@@ -6,6 +6,10 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :comments
 
+  #mount_uploader :mage, PictureUploader
+
+  
+
   scope :is_draft, -> { where(status: 'draft') }
   aasm column: 'status' do
     state :draft, initial: true

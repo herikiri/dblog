@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(version: 20140508150735) do
     t.datetime "updated_at"
   end
 
+  create_table "categories_articles", force: true do |t|
+    t.integer "category_id"
+    t.integer "article_id"
+  end
+
+  add_index "categories_articles", ["article_id"], name: "index_categories_articles_on_article_id"
+  add_index "categories_articles", ["category_id"], name: "index_categories_articles_on_category_id"
+
   create_table "comments", force: true do |t|
     t.string   "content"
     t.integer  "article_id"
@@ -73,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140508150735) do
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "pictures", force: true do |t|
-    t.string   "name"
+    t.string   "image"
     t.integer  "imageable_id"
     t.string   "imageable_type"
     t.datetime "created_at"

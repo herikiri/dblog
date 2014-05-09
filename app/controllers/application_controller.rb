@@ -18,11 +18,20 @@ class ApplicationController < ActionController::Base
     end
   end  
 
+  def after_sign_in_path_for(resource)
+    profiles_index_path
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    #request.referrer
+    new_user_session_path
+  end
+
   protected
 
     def configure_devise_permitted_parameters
       registration_params = [:name, :email, :password, :password_confirmation]
-
+      puts registration_params[0].to_s
       if params[:action] == 'update'
         devise_parameter_sanitizer.for(:account_update) { 
           |u| u.permit(registration_params << :current_password)

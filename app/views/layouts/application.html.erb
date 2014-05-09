@@ -14,7 +14,7 @@
   <%= link_to "Register", new_user_registration_path %>
 <% else %>  
   <%= link_to "Home", root_path %> |
-  <%= "Signed in as #{current_user.email}" %> |
+  <%= link_to "Signed in as #{current_user.email}",  profiles_index_path %> |
   <%= link_to "Logout", destroy_user_session_path, method: :delete %>
 <% end %>
 

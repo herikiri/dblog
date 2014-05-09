@@ -2,14 +2,19 @@ Rails.application.routes.draw do
   #get 'profiles/show'
 
   get 'landing/index'
-
+  
   get 'users/add_email'
+  get 'profiles/index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' } 
   
   #get 'omniauth_callbacks/twitter'
   #get 'omniauth_callbacks/facebook'
   resources :users, :only => :show
+  resources :articles
+
+  
+
   constraints(Subdomain) do
     match '/' => 'profiles#show', via: [:get, :patch, :post]
   end
