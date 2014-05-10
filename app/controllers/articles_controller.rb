@@ -18,7 +18,8 @@ class ArticlesController < ApplicationController
   def new
     #@article = Article.new
     @article = current_user.blog.articles.new
-
+    @article.categories.new
+    @categories = Category.all
   end
 
   # GET /articles/1/edit

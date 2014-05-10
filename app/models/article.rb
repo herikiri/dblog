@@ -9,6 +9,8 @@ class Article < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_many :comments
 
+  accepts_nested_attributes_for :categories
+
   mount_uploader :image, PictureUploader
 
   def image_changed?

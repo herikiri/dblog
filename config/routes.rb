@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   #get 'omniauth_callbacks/facebook'
   resources :users, :only => :show
   resources :articles
-
+  resources :categories
   
 
   constraints(Subdomain) do

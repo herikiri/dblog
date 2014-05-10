@@ -17,6 +17,22 @@
   </div>
 
   <div class="field">
+    <%= f.label :categories %><br>
+
+   
+      <%= f.fields_for :categories do |fc| %>
+        <% @categories.each do |category| %>
+          
+          <%= fc.label category.name %><br />
+        <% end %>
+       
+        
+      <% end %>
+    
+
+  </div>
+
+  <div class="field">
     <%= f.file_field "uploaded_picture" %>
   </div>
   
