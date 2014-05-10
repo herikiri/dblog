@@ -1,18 +1,23 @@
 class Article < ActiveRecord::Base
   include AASM
+  extend FriendlyId
 
- 
+  friendly_id :title, use: :slugged
 
   belongs_to :blog
   has_many :pictures, as: :imageable
   has_and_belongs_to_many :categories
   has_many :comments
 
+  accepts_nested_attributes_for :categories
+
   mount_uploader :image, PictureUploader
 
   def image_changed?
     @image_changed
   end
+
+
 
   scope :is_draft, -> { where(status: 'draft') }
   aasm column: 'status' do

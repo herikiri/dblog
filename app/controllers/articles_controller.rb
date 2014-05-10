@@ -18,7 +18,8 @@ class ArticlesController < ApplicationController
   def new
     #@article = Article.new
     @article = current_user.blog.articles.new
-
+    @article.categories.new
+    @categories = Category.all
   end
 
   # GET /articles/1/edit
@@ -46,7 +47,11 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1.json
   def update
     respond_to do |format|
+<<<<<<< HEAD
       if @article.update(article_params) 
+=======
+      if @article.update(article_params)
+>>>>>>> 0ec0fdae432869ccfd0b7358da395d32cf8e59fa
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
@@ -83,7 +88,7 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.friendly.find(params[:id])
     end
 
    # Never trust parameters from the scary internet, only allow the white list through.
