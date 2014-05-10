@@ -1,7 +1,8 @@
 class Article < ActiveRecord::Base
   include AASM
+  extend FriendlyId
 
- 
+  friendly_id :title, use: :slugged
 
   belongs_to :blog
   has_many :pictures, as: :imageable
@@ -13,6 +14,8 @@ class Article < ActiveRecord::Base
   def image_changed?
     @image_changed
   end
+
+
 
   scope :is_draft, -> { where(status: 'draft') }
   aasm column: 'status' do
