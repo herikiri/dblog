@@ -30,6 +30,9 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    bootstrap-kaminari-views (0.0.3)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -67,6 +70,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     jwt (0.1.12)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     less (2.5.0)
       commonjs (~> 0.2.7)
     less-rails (2.5.0)
@@ -177,12 +183,14 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
+  bootstrap-kaminari-views
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
   friendly_id (~> 5.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   less-rails
   omniauth
   omniauth-facebook

@@ -1,10 +1,8 @@
 class User < ActiveRecord::Base
-	#before_create :build_default_blog
   has_one :blog, dependent: :destroy
   has_one :picture, as: :imageable
   has_many :comments
-
-  #mount_uploader :image, PictureUploader
+  has_many :categories
 
 	TEMP_EMAIL = 'change@me.com'
   TEMP_EMAIL_REGEX = /change@me.com/
@@ -18,8 +16,6 @@ class User < ActiveRecord::Base
   #validates_format_of :name, with: /^[a-z0-9_]+$/, multiline: true, message: "must be lowercase alphanumerics only"
 	validates_length_of :name, maximum: 32, message: "exceeds maximum of 32 characters"
 	validates_exclusion_of :name, in: ['www', 'mail', 'ftp'], message: "is not available"
-
-	
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -53,12 +49,19 @@ class User < ActiveRecord::Base
   end
 
   private
-  	def build_default_blog
-  		build_blog(attributes = {
-  			name: self.name.capitalize + "'s Blog"
-  			} )
-  		true
-  	end
+    def configure_devise_permitted_parameters
+      registration_params = [:name, :email, :password, :password_confirmation]
+
+      if params[:action] == 'update'
+        devise_parameter_sanitizer.for(:account_update) { 
+          |u| u.permit(registration_params << :current_password)
+        }
+      elsif params[:action] == 'create'
+        devise_parameter_sanitizer.for(:sign_up) { 
+          |u| u.permit(registration_params) 
+        }
+      end
+    end
 
     def self.reset_sequence!
       ActiveRecord::Base.connection.execute("DELETE from sqlite_sequence where name = '#{table_name}'")

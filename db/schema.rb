@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20140508140912) do
-=======
 ActiveRecord::Schema.define(version: 20140510032124) do
->>>>>>> 0ec0fdae432869ccfd0b7358da395d32cf8e59fa
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -24,18 +20,13 @@ ActiveRecord::Schema.define(version: 20140510032124) do
     t.integer  "blog_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
-=======
-    t.string   "status"
-    t.datetime "published_at"
     t.string   "slug"
->>>>>>> 0ec0fdae432869ccfd0b7358da395d32cf8e59fa
   end
 
   add_index "articles", ["blog_id"], name: "index_articles_on_blog_id"
   add_index "articles", ["slug"], name: "index_articles_on_slug", unique: true
 
-  create_table "articles_categories", force: true do |t|
+  create_table "articles_categories", id: false, force: true do |t|
     t.integer  "article_id"
     t.integer  "category_id"
     t.datetime "created_at"
@@ -57,9 +48,12 @@ ActiveRecord::Schema.define(version: 20140510032124) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id"
 
   create_table "comments", force: true do |t|
     t.string   "content"
@@ -96,7 +90,7 @@ ActiveRecord::Schema.define(version: 20140510032124) do
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "pictures", force: true do |t|
-    t.string   "image"
+    t.string   "name"
     t.integer  "imageable_id"
     t.string   "imageable_type"
     t.datetime "created_at"

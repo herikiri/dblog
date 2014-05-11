@@ -3,15 +3,12 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
-  <dd><%= @article.title %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
-  <dd><%= @article.content %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
-  <dd><%= @article.status %></dd>
-  
-</dl>
+
+<h3><%= @article.title %></h3>
+  <span class='publihed_date'><%= @article.updated_at %></span><br />
+  <article>
+    <%= @article.content.html_safe %>
+  <article>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

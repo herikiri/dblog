@@ -1,0 +1,48 @@
+// Place all the styles related to the Profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+#avatar {
+	img {
+		width: 	150px;
+		height: auto;
+	}
+	margin: 10px 0px 80px 0px;
+}
+
+span.blog_description {
+	padding-left: 5px;
+	font-style: italic;
+	font-size: 18px;
+	font-color: #90908C;
+}
+
+span.blog_nav {
+	float: right;
+}
+
+#banner {
+	img {
+		width: 	100%;
+		height: 150px;
+	}
+	margin: 10px 0px 50px 0px;
+}
+
+article {
+	text-align: justify;
+	.published_date {
+		font-style: italic;
+		font-color: #afacac;
+		margin-bottom: 8px;
+	}
+	img {
+		float: right;
+		width: 	100px;
+		height: auto;
+		margin: 0px 0px 10px 15px;
+	}
+
+}

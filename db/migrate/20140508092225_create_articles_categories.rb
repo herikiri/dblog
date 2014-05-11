@@ -1,6 +1,6 @@
 class CreateArticlesCategories < ActiveRecord::Migration
   def change
-    create_table :articles_categories do |t|
+    create_table :articles_categories, id: false do |t|
       t.references :article, index: true
       t.references :category, index: true
 

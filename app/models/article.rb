@@ -11,14 +11,6 @@ class Article < ActiveRecord::Base
 
   accepts_nested_attributes_for :categories
 
-  mount_uploader :image, PictureUploader
-
-  def image_changed?
-    @image_changed
-  end
-
-
-
   scope :is_draft, -> { where(status: 'draft') }
   aasm column: 'status' do
     state :draft, initial: true

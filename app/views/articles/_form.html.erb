@@ -9,29 +9,15 @@
   <div class="control-group">
     <%= f.label :content, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :content, :class => 'text_area' %>
+      <%= f.text_area :content, cols: "100" , rows: "15", class: 'text_area'  %>
     </div>
-
-
-  <div class="field">
-    <%= f.label :categories %><br>
-
-   
-      <%= f.fields_for :categories do |fc| %>
-        <% @categories.each do |category| %>
-          
-          <%= fc.label category.name %><br />
-        <% end %>
-       
-        
-      <% end %>
-    
-
   </div>
 
-  <div class="field">
-    <%= f.file_field "uploaded_picture" %>
-
+  <div class="control-group">
+    <%= f.label "Image", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field "uploaded_picture" %>
+    </div>
   </div>
   
   <div class="control-group">

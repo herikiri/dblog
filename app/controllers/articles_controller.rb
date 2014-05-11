@@ -6,7 +6,8 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     #@articles = Article.all
-    @articles = current_user.blog.articles
+    @articles = current_user.blog.articles.page(params[:page]).per(5)
+    @categories = Category.all
   end
 
   # GET /articles/1
@@ -31,9 +32,9 @@ class ArticlesController < ApplicationController
   def create
     #@article = Article.new(article_params)
     @article = current_user.blog.articles.new(article_params)
-
+    picture = @article.pictures.new(picture_params)
     respond_to do |format|
-      if @article.save
+      if @article.save || picture.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
@@ -47,11 +48,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1.json
   def update
     respond_to do |format|
-<<<<<<< HEAD
       if @article.update(article_params) 
-=======
-      if @article.update(article_params)
->>>>>>> 0ec0fdae432869ccfd0b7358da395d32cf8e59fa
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
