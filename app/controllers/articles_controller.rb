@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   def new
     #@article = Article.new
     @article = current_user.blog.articles.new
-    @article.categories.new
+    @article_categories = @article.categories.new
     @categories = Category.all
   end
 

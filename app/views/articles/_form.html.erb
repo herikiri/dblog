@@ -19,6 +19,21 @@
       <%= f.file_field "picture" %>
     </div>
   </div>
+
+  <!--
+    Nested Form Goes Here
+  -->
+ 
+  <div class="control-group">
+    <%= f.label :categories, :class => 'control-label'  %>
+    <%= f.fields_for :categories do |fc| %>
+      <div class="controls">
+        <%= fc.text_field :name %>
+      </div>
+    <% end %>
+
+  </div>
+
   
   <div class="control-group">
     <%= f.label :status, :class => 'control-label' %>
@@ -27,7 +42,7 @@
           ['Make Draft', 'draft'], 
           ['Publish', 'published']
         ], 
-        selected: 'draft'), :class => 'select_field' %>
+        selected: @article.status), :class => 'select_field' %>
       
     </div>
   </div>

@@ -50,3 +50,5 @@ gem "twitter-bootstrap-rails"
 gem 'friendly_id', '~> 5.0.0'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+
+gem "cancan"

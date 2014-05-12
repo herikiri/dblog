@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :categories
 
-	TEMP_EMAIL = 'change@me.com'
-  TEMP_EMAIL_REGEX = /change@me.com/
+	TEMP_EMAIL = 'heriyantwo@gmail.com'
+  TEMP_EMAIL_REGEX = /heriyantwo@gmail.com/
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

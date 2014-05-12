@@ -16,7 +16,9 @@
   </article>
   
 
-  <% if user_signed_in? %>
+  <% unless user_signed_in? %>
+
+  <% else %>
     <div class="form-actions">
       <%= link_to t('.back', :default => t("helpers.links.back")),
                   articles_path, :class => 'btn'  %>
