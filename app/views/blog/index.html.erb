@@ -5,13 +5,13 @@
 			<span class="blog_description"><%= @user.blog.description %></span>
 
       <span class="blog_nav">
-        <%= link_to 'Edit Blog', "#" %> | 
+        <%= link_to 'Edit Blog', edit_blog_path(@blog) %> | 
   			<%= link_to 'Article List', articles_path %> | 
   			<%= link_to 'New Article', new_article_path %> 
       </span>
 
       <div id="banner">
-        <% if  @user.blog.picture.present? %>
+        <% if @user.blog.picture.present? %>
           <img src=<%= @user.blog.picture.name_url %> alt="banner"/>
         <% else %>
           <%= image_tag "blue1x1.png" %>
@@ -20,22 +20,25 @@
       </div>
 
 			<%  @published_articles.each do |article| %>
-				<h3><%= link_to article.title, article %></h3>
-
 				<article>
-          <div class='published_date'><%= article.updated_at %></div>
+          <h3><%= link_to article.title, article %></h3>
+          <div class='published_date'>
+            <%= article.updated_at.strftime('%e %b %Y') %>
+          </div>
           <% unless article.pictures[0].name.blank? %>
             <img src=<%= article.pictures[0].name_url %> alt="article_image"/>
           <% end %>
 					<%= sanitize(article.content.truncate(1000, separator: '</p>')) %>
 				<article>
-        <br />
+        
 			<% end %>
+    
+     <%= paginate @published_articles %>
     </div>
 
     <div class="span3 sidebar">
     	<div id="avatar">
-        <% if  @user.blog.picture.present? %>
+        <% if  @user.picture.present? %>
           <img src=<%= @user.picture.name_url %> alt="avatar"/>
         <% else %>
           <%= image_tag "grey1x1.png" %>

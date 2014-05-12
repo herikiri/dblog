@@ -2,7 +2,7 @@ class LandingController < ApplicationController
 	before_action :set_article, only: [:show]
 
   def index
-  	@global_published_articles = Article.where(status: 'published').page(params[:page]).per(5)
+  	@global_published_articles = Article.where(status: 'published').order("updated_at DESC").page(params[:page]).per(5)
     @categories = Category.all
   end
 

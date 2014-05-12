@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'landing/index'
   
   get 'users/add_email'
-  get 'blog/index'
+  #get 'blog/index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' } 
   
@@ -13,14 +13,12 @@ Rails.application.routes.draw do
   resources :users, :only => :show
   resources :articles
   resources :categories
-  
+  resources :blog, only: [:index, :show, :edit, :update]
 
   constraints(Subdomain) do
     match '/' => 'blog#show', via: [:get, :patch, :post]
   end
 
-
-  
   get '/users/:id/add_email' => 'users#add_email', via: [:get, :patch, :post], :as => :add_user_email
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
